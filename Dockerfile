@@ -9,7 +9,7 @@ RUN sed -e 's@main$@main contrib non-free@'  -i /etc/apt/sources.list
 RUN \
 		apt-get update && \
 		apt-get upgrade -y && \
-		apt-get --no-install-recommends install -y openssh-client php5-cli curl ca-certificates && \
+		apt-get --no-install-recommends install -y openssh-client php5-cli curl ca-certificates git sed && \
 		apt-get clean && \
 		rm -r /var/lib/apt/lists/*
 RUN \
