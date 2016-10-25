@@ -15,10 +15,10 @@ RUN \
 		rm -r /var/lib/apt/lists/*
 
 RUN \
-	curl  https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
+	curl  --max-redirs 3 -o /tmp/composer-install https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer && php /tmp/composer-install --install-dir=/usr/local/bin/ --filename=composer && rm /tmp/composer-install
 
 RUN \
-	curl http://deployer.org/releases/v3.3.0/deployer.phar -o /usr/local/bin/dep && \
+	curl --max-redirs 3  https://deployer.org/releases/v3.3.0/deployer.phar -o /usr/local/bin/dep && \
 	chmod a+rx /usr/local/bin/dep && \
 	/bin/echo -e "Host *\n\tStrictHostKeyChecking no\n\tPasswordAuthentication no\n\n" | tee -a /etc/ssh/ssh_config
 
